@@ -1,0 +1,28 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% include "header.html" %}
+
+<!--Page with form to delete the chosen cafe-->
+
+<header class="masthead">
+	<div class="overlay"></div>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 col-md-10 mx-auto ">
+                    <div class="post-heading">
+                        <h1>Report {{name}} Closed?</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </header>
+<div class="container main-body">
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <add_form>
+            {{ wtf.quick_form(form) }}
+            </add_form>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}

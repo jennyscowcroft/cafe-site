@@ -1,0 +1,85 @@
+{% include "header.html" %}
+
+<!--Page to display a cafe's details-->
+
+<!--Header pulls img_url for displayed cafe and uses it as background image-->
+<header class="masthead">
+      <div
+    class="p-5 text-center bg-image"
+    style="
+      background-image: url({{cafe[0]['img_url']}});
+      height: 500px;
+    "
+  >
+<!--Header displays cafe name, location, and a link to view it on Google Maps-->
+	<div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{cafe[0]['name']}}</h1>
+                        <h3>{{cafe[0]['location']}}</h3>
+                        <h3><a class="cafe-link" href={{cafe[0]['map_url']}}>View on Map</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </header>
+
+<!--Cafe description pulled from db and printed (e.g. is there wifi, are there sockets?)-->
+<description class="main-body">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Wifi?</h3>
+                {% if cafe[0]['has_wifi'] == True %}
+                    <p>Yes</p>
+                {% else %}
+                    <p>No</p>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Can you take calls?</h3>
+                {% if cafe[0]['can_take_calls'] == True %}
+                    <p>Yes</p>
+                {% else %}
+                    <p>No</p>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Sockets?</h3>
+                {% if cafe[0]['has_sockets'] == True %}
+                    <p>Yes</p>
+                {% else %}
+                    <p>No</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Toilet?</h3>
+                {% if cafe[0]['has_toilet'] == True %}
+                    <p>Yes</p>
+                {% else %}
+                    <p>No</p>
+                {% endif %}
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Seats?</h3>
+                <p>{{cafe[0]['seats']}}</p>
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <h3>Coffee Price?</h3>
+                <p>{{cafe[0]['coffee_price']}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mx-auto text-center">
+                <h5><a href="{{url_for('delete', id=cafe[0]['id'], name=cafe[0]['name'])}}" class="delete">Report Cafe Closed</a></h5>
+            </div>
+        </div>
+    </div>
+</description>
+
+{% include "footer.html" %}
